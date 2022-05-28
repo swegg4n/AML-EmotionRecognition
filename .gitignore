@@ -6,6 +6,9 @@
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
+# Ignore the data folder
+/data/face_expression_model.pt
+
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 

@@ -79,6 +79,11 @@ while True:
         with torch.no_grad():
             conf, pred = torch.max(out, 1)
         pred = pred.tolist()
+        conf = conf.tolist()
+        probs = torch.nn.functional.softmax(out, dim=1)
+        conf, _ = torch.max(probs, 1)
+        conf = conf.tolist()
+        cv2.putText(img, f"Conf: {int(conf[0]*100)}", (x+5, y+h+30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
         cv2.putText(img, CLASSES[pred[0]], (x+5, y-5), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     cv2.imshow("video", img)
